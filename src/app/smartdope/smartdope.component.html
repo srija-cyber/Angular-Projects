@@ -1,0 +1,50 @@
+<div class="bg-emphisis">
+  <div class="container m-4">
+    <h2 class="mb-5" style="text-align: center;">📝 Smart Task Tracker</h2>
+
+    <div class="mb-3">
+      <input class="form-control mb-2" type="text" placeholder="Enter Task Name" [(ngModel)]="newTask" />
+
+      <select class="form-select mb-2" [(ngModel)]="priority">
+        <option [ngValue]="null" disabled selected>Select Priority</option>
+        <option [ngValue]="'high'">High</option>
+        <option [ngValue]="'medium'">Medium</option>
+        <option [ngValue]="'low'">Low</option>
+      </select>
+
+      <input class="form-control mb-2" type="date" [(ngModel)]="newDue" />
+
+      <button class="btn btn-primary" (click)="addTasks()">Add Task</button>
+    </div>
+
+    <p *ngIf="tasks.length === 0">No tasks found.</p>
+
+    <p *ngIf="tasks.length > 0">
+      Total: {{ tasks.length }} | ✅ Completed: {{ completedCount }} | ⏳ Pending: {{ pendingCount }}
+    </p>
+
+    <div *ngFor="let task of tasks" class="card p-2 mb-2"
+      [ngClass]="{'bg-danger text-white': isOverdue(task)}">
+
+      <div [ngStyle]="{ color: task.priority === 'high' ? 'red' : task.priority === 'medium' ? 'orange' : 'green', 'text-decoration': task.isCompleted ? 'line-through' : 'none' }">
+        <strong>{{ task.name }}</strong>
+        | Priority:
+        <span [ngSwitch]="task.priority">
+          <span *ngSwitchCase="'high'">🔴 Urgent</span>
+          <span *ngSwitchCase="'medium'">🟠 Moderate</span>
+          <span *ngSwitchCase="'low'">🟢 Normal</span>
+        </span>
+        | Due: {{ task.dueDate }}
+        | Status: {{ task.isCompleted ? '✔️ Completed' : '⏳ Pending' }}
+      </div>
+
+      <div class="m-2">
+        <button class="btn btn-sm btn-outline-success me-2" (click)="toggleStatus(task)">Done</button>
+      </div>
+
+      <div *ngIf="isOverdue(task)" class="mt-1">
+        ⚠️ <strong>Overdue!</strong>
+      </div>
+    </div>
+  </div>
+</div>

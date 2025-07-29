@@ -1,0 +1,26 @@
+<!-- <h1>Inbuilt pipes</h1> -->
+
+<!-- <h4>Upper Case</h4>
+<p>{{"hello world" | uppercase}}</p>
+<h4>Lower Case</h4>
+<p>{{"HELLO WORLD" | lowercase}}</p>
+<h4>date Pipe</h4>
+<p>{{currentData | date:'dd/MM/yyyy'}}</p>
+<h4>Current Time</h4>
+<p>{{currentData | date:'hh-mm-ss'}}</p>    
+<h4>Currency</h4>
+<p>{{2500 | currency:'INR'}}</p>
+<h4>Slice</h4>
+<p>{{"Hello Angular Developers" | slice:0:5 | uppercase}}</p>
+<p>{{"Hello Angular Developers" | slice:0-5}}</p> -->
+
+<h1>Custom Pipes</h1>
+<input type="text" placeholder="Search Students..." [(ngModel)]="search">
+<p>{{search}}</p>
+<ul>
+    <li *ngFor="let student of students | filterStudent:search">
+    {{ student.name }}
+    </li>
+</ul>
+<h4>Json Pipe</h4>
+<p>{{students | json}}</p>

@@ -1,0 +1,27 @@
+<div class="task-manager-container">
+    <h1 class="app-title">Task Manager</h1>
+    <div class="task-input-container">
+        <input 
+            type="text" 
+            placeholder="Enter task name..." 
+            [(ngModel)]="taskName"
+            class="task-input"
+        />
+
+        <select class="priority-select" [(ngModel)]="priority">
+            <option [ngValue]="null" disabled selected>Select Priority</option>
+            <option [ngValue]="'high'">High Priority</option>
+            <option [ngValue]="'medium'">Medium Priority</option>
+            <option [ngValue]="'low'">Low Priority</option>
+        </select>
+
+        <button class="add-task-btn" (click)="addTask()">
+            <span>+ Add Task</span>
+        </button>
+    </div>
+
+    <app-task-list
+        [tasks]="tasks"
+        (markComplete)="markTaskAsCompleted($event)">
+    </app-task-list>
+</div>

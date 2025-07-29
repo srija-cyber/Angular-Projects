@@ -1,0 +1,31 @@
+<div class="header">
+  <div class="logo-text">
+    <h1>Shopper Stop!</h1>
+  </div>
+  <div>
+    <button class="my-cart">My Cart ({{ cart.length }})</button>
+  </div>
+</div>
+
+<div class="search-container">
+  <input type="search" [(ngModel)]="searchQuery" placeholder="Search any item" />
+</div>
+
+<div class="filter-buttons">
+  <button (click)="setFilter('All')">All</button>
+  <button (click)="setFilter('In Stock')">In Stock</button>
+  <button (click)="setFilter('Low Stock')">Low Stock</button>
+</div>
+
+<div class="card-wrapper">
+  <app-product-cart-items
+    *ngFor="let product of filteredProducts"
+    [product]="product"
+    (addToCartEvent)="addToCart($event)">
+  </app-product-cart-items>
+</div>
+
+
+<div class="footer">
+  <p>© 2025 Shopper Stop. All rights reserved.</p>
+</div>

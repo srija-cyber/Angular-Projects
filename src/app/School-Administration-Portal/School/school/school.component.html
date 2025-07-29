@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <h2>Schools</h2>
+  
+  <div class="card mb-4">
+    <div class="card-header">
+      {{ isEditing ? 'Edit School' : 'Add School' }}
+    </div>
+    <div class="card-body">
+      <form (submit)="saveSchool()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="currentSchool.name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" class="form-control" [(ngModel)]="currentSchool.location" name="location" required>
+        </div>
+        <div class="form-group">
+          <label>Established Year</label>
+          <input type="number" class="form-control" [(ngModel)]="currentSchool.establishedYear" name="establishedYear" required>
+        </div>
+        <div class="form-group">
+          <label>Principal ID (optional)</label>
+          <input type="number" class="form-control" [(ngModel)]="currentSchool.principalId" name="principalId">
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">
+          {{ isEditing ? 'Update' : 'Save' }}
+        </button>
+        <button type="button" class="btn btn-secondary m-2" (click)="resetForm()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Established Year</th>
+        <th>Principal ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let school of schools; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ school.name }}</td> 
+        <td>{{ school.location }}</td>
+        <td>{{ school.establishedYear }}</td>
+        <td>{{ school.principalId || '-' }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning m-1" (click)="editSchool(school)">Edit</button>
+          <button class="btn btn-sm btn-danger m-1" (click)="deleteSchool(school.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

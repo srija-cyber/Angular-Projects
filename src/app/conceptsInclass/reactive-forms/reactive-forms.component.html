@@ -1,0 +1,36 @@
+<div style="background-color: rgb(182, 182, 244); min-height: 100vh; padding: 2rem;">
+    <form [formGroup]="reactForm" (ngSubmit)="saveFormData()">
+        <input class="m-2" type="text" placeholder="Name" formControlName="name"/>
+        <div *ngIf="reactForm.get('name')?.invalid && reactForm.get('name')?.dirty" style="color: red;">
+            Name is required
+        </div>
+        <div *ngIf="reactForm.controls['name']?.value?.length>5" style="color: red;">
+            Name should be less than or equal to 5 characters
+        </div>
+        <input class="m-2" type="text" placeholder="age" formControlName="age"/>
+        <div style="color: red;">
+            Age is required
+        </div>
+        <input class="m-2" type="text" placeholder="Email" formControlName="email"/>
+        <div style="color: red;">
+            Email is required
+        </div>
+
+        <br/>
+        <label for="">Country :</label>
+        <select class="m-2" formControlName="country">
+            <option value="USA">USA</option>
+            <option value="France">France</option>
+            <option value="Canada">Canada</option>
+            <option value="Austria">Austria</option>
+        </select>
+        <div style="color: red;">
+            Country is required
+        </div>
+        
+        <div>
+            <button class="btn btn-success">Submit</button> 
+             <!-- (click)="reset()" to reset--> 
+        </div>
+    </form>
+</div>

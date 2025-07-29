@@ -1,0 +1,44 @@
+<div class="bg-color">
+    <div class="container mt-5">
+      <div class="mb-4">
+        <input
+          class="form-control mb-3"
+          type="text"
+          placeholder="Enter student name"
+          [(ngModel)]="name"
+        />
+        <input
+          class="form-control mb-3"
+          type="text"
+          placeholder="Enter grade (A/B/C)"
+          [(ngModel)]="grade"
+        />
+        <button class="btn btn-primary" (click)="addStudent()">Add Student</button>
+      </div>
+
+      <p *ngIf="students.length === 0" class="text-muted">No Students Found.</p>
+
+      <div *ngFor="let student of students" class="card mb-3 shadow-sm p-3">
+        <h5 class="card-title">{{ student.name }} - Grade: {{ student.grade }}</h5>
+
+        <div [ngSwitch]="student.grade">
+          <p *ngSwitchCase="'A'" class="text-success">🌟 Excellent</p>
+          <p *ngSwitchCase="'B'" class="text-info">👍 Good</p>
+          <p *ngSwitchCase="'C'" class="text-warning">⚠️ Needs Improvement</p>
+          <p *ngSwitchDefault class="text-danger">❌ Failed but Work Hard</p>
+        </div>
+
+        <p
+          [ngClass]="{
+            'badge bg-success': student.grade === 'A',
+            'badge bg-info text-dark': student.grade === 'B',
+            'badge bg-warning text-dark': student.grade === 'C',
+            'badge bg-danger': student.grade !== 'A' && student.grade !== 'B' && student.grade !== 'C'
+          }"
+        >
+          Grade: {{ student.grade }}
+        </p>
+      </div>
+  </div>
+</div>
+

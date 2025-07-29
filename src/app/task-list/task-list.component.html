@@ -1,0 +1,41 @@
+<div class="task-list-container">
+    <div *ngIf="tasks.length === 0" class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>No tasks yet</h3>
+        <p>Add your first task to get started!</p>
+    </div>
+
+    <div *ngIf="tasks.length > 0" class="tasks-grid">
+        <div 
+            *ngFor="let task of tasks"
+            class="task-card"
+            [ngClass]="{
+                'high-priority': task.priority === 'high',
+                'medium-priority': task.priority === 'medium',
+                'low-priority': task.priority === 'low',
+                'completed': task.status === 'completed'
+            }">
+            
+            <div class="task-header">
+                <h3 class="task-name">{{ task.name }}</h3>
+                <span class="task-priority" [ngSwitch]="task.priority">
+                    <span *ngSwitchCase="'high'" class="priority-badge high">🔴 High</span>
+                    <span *ngSwitchCase="'medium'" class="priority-badge medium">🟠 Medium</span>
+                    <span *ngSwitchCase="'low'" class="priority-badge low">🟢 Low</span>
+                </span>
+            </div>
+
+            <div class="task-status">
+                <span *ngIf="task.status === 'pending'" class="status pending">⏳ Pending</span>
+                <span *ngIf="task.status === 'completed'" class="status completed">✅ Completed</span>
+            </div>
+
+            <button 
+                *ngIf="task.status === 'pending'" 
+                class="btn btn-primary m-2"
+                (click)="onMarkCompleted(task)">
+                Mark Complete
+            </button>
+        </div>
+    </div>
+</div>

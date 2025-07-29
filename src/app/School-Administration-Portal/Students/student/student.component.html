@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h2>Students</h2>
+  
+  <div class="card mb-4">
+    <div class="card-header">
+      {{ isEditing ? 'Edit Student' : 'Add Student' }}
+    </div>
+    <div class="card-body">
+      <form (submit)="saveStudent()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="currentStudent.name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" class="form-control" [(ngModel)]="currentStudent.age" name="age" required>
+        </div>
+        <div class="form-group">
+          <label>Grade</label>
+          <input type="text" class="form-control" [(ngModel)]="currentStudent.grade" name="grade" required>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">
+          {{ isEditing ? 'Update' : 'Save' }}
+        </button>
+        <button type="button" class="btn btn-secondary m-2" (click)="resetForm()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Grade</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.grade }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning m-1" (click)="editStudent(student)">Edit</button>
+          <button class="btn btn-sm btn-danger m-1" (click)="deleteStudent(student.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

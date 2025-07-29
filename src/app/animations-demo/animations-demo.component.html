@@ -1,0 +1,129 @@
+<div class="container">
+  <h1>Animation Types</h1>
+  
+  <div class="animation-card">
+    <h2>1. Fade In/Out</h2>
+    <p>Show/hide alert messages, modals, or tooltips using opacity.</p>
+    <div class="demo-box" [@fadeInOut]="fadeState"></div>
+    <button (click)="toggleFade()">Toggle Fade</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>2. Slide In/Out (X-axis)</h2>
+    <p>Slide sidebar, toast, or drawer menu using translateX.</p>
+    <div class="demo-box" [@slideX]="slideXState"></div>
+    <button (click)="toggleSlideX()">Toggle Slide X</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>3. Slide In/Out (Y-axis)</h2>
+    <p>Slide dropdown or filters from top using translateY.</p>
+    <div class="demo-box" [@slideY]="slideYState"></div>
+    <button (click)="toggleSlideY()">Toggle Slide Y</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>4. Collapse/Expand</h2>
+    <p>Show/hide FAQ or extra details in a section using height.</p>
+    <div class="demo-box collapsible" [@collapseExpand]="collapseState"></div>
+    <button (click)="toggleCollapse()">Toggle Collapse</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>5. Scale/Zoom</h2>
+    <p>Zoom card or image on hover using scale.</p>
+    <div class="demo-box" 
+         [@scale]="scaleState"
+         (mouseenter)="scaleState = 'scaled'"
+         (mouseleave)="scaleState = 'normal'"></div>
+    <button (click)="toggleScale()">Toggle Scale</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>6. Rotate</h2>
+    <p>Rotate refresh icon or toggle button using rotate.</p>
+    <div class="demo-box" [@rotate]="rotateState"></div>
+    <button (click)="toggleRotate()">Toggle Rotate</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>7. Shake</h2>
+    <p>Shake input field or login box on invalid entry using keyframes + translateX.</p>
+    <div class="demo-box" [@shake]="shakeState"></div>
+    <button (click)="triggerShake()">Trigger Shake</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>8. Flip (Y-axis)</h2>
+    <p>Flip a card to show front/back using rotateY.</p>
+    <div class="demo-box flip-container" [@flipY]="flipState">
+      <div class="front">Front</div>
+      <div class="back">Back</div>
+    </div>
+    <button (click)="toggleFlip()">Toggle Flip</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>9. Skew</h2>
+    <p>Apply skew effect on banner/image hover using skewX.</p>
+    <div class="demo-box" 
+         [@skew]="skewState"
+         (mouseenter)="skewState = 'skewed'"
+         (mouseleave)="skewState = 'normal'"></div>
+    <button (click)="toggleSkew()">Toggle Skew</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>10. Bounce</h2>
+    <p>Animate bouncing button or success alert using keyframes + translateY.</p>
+    <div class="demo-box" [@bounce]="bounceState"></div>
+    <button (click)="triggerBounce()">Trigger Bounce</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>11. Zoom Out/Shrink</h2>
+    <p>Shrink item on delete (like a note or task) using scale + opacity.</p>
+    <div class="demo-box" [@zoomOut]="zoomOutState"></div>
+    <button (click)="triggerZoomOut()">Trigger Zoom Out</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>12. Grow Width/Height</h2>
+    <p>Animate a progress bar or section using width or height.</p>
+    <div class="demo-box" [@grow]="growState"></div>
+    <button (click)="toggleGrow()">Toggle Grow</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>13. Slide with Opacity</h2>
+    <p>Slide in notifications or cards while fading in.</p>
+    <div class="demo-box" [@slideWithOpacity]="slideOpacityState"></div>
+    <button (click)="toggleSlideOpacity()">Toggle Slide with Opacity</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>14. Fade + Expand</h2>
+    <p>Open a detailed view or card with both opacity and height.</p>
+    <div class="demo-box collapsible" [@fadeExpand]="fadeExpandState"></div>
+    <button (click)="toggleFadeExpand()">Toggle Fade + Expand</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>15. Flip with RotateY</h2>
+    <p>Flip login/signup panel or flashcard using rotateY.</p>
+    <div class="demo-box flip-container" [@flipRotateY]="flipRotateState">
+      <div class="front">Login</div>
+      <div class="back">Sign Up</div>
+    </div>
+    <button (click)="toggleFlipRotate()">Toggle Flip</button>
+  </div>
+
+  <div class="animation-card">
+    <h2>16. Progress Bar Fill</h2>
+    <p>Animate task progress bar from 0% to 100%.</p>
+    <div class="progress-container">
+      <div class="progress-bar" [@progressFill]="progressState"></div>
+    </div>
+    <button (click)="startProgress()">Start Progress</button>
+  </div>
+</div>

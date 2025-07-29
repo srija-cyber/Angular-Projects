@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h2>Principals</h2>
+  
+  <div class="card mb-4">
+    <div class="card-header">
+      {{ isEditing ? 'Edit Principal' : 'Add Principal' }}
+    </div>
+    <div class="card-body">
+      <form (submit)="savePrincipal()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="currentPrincipal.name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>Qualification</label>
+          <input type="text" class="form-control" [(ngModel)]="currentPrincipal.qualification" name="qualification" required>
+        </div>
+        <div class="form-group">
+          <label>Years of Service</label>
+          <input type="number" class="form-control" [(ngModel)]="currentPrincipal.yearsOfService" name="yearsOfService" required>
+        </div>
+        <div class="form-group">
+          <label>School ID (optional)</label>
+          <input type="number" class="form-control" [(ngModel)]="currentPrincipal.schoolId" name="schoolId">
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">
+          {{ isEditing ? 'Update' : 'Save' }}
+        </button>
+        <button type="button" class="btn btn-secondary m-2" (click)="resetForm()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Qualification</th>
+        <th>Years of Service</th>
+        <th>School ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let principal of principals; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{ principal.name }}</td>
+        <td>{{ principal.qualification }}</td>
+        <td>{{ principal.yearsOfService }}</td>
+        <td>{{ principal.schoolId || '-' }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning m-1" (click)="editPrincipal(principal)">Edit</button>
+          <button class="btn btn-sm btn-danger m-1" (click)="deletePrincipal(principal.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

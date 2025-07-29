@@ -1,0 +1,54 @@
+<div class="form-container">
+  <input type="text" class="form-input" placeholder="Product Title" [(ngModel)]="productForm.title" />
+  <input type="number" class="form-input" placeholder="Price" [(ngModel)]="productForm.price" />
+  <input type="text" class="form-input" placeholder="Description" [(ngModel)]="productForm.description" />
+  <input type="text" class="form-input" placeholder="Category" [(ngModel)]="productForm.category" />
+  <input type="text" class="form-input" placeholder="Brand" [(ngModel)]="productForm.brand" />
+  <input type="text" class="form-input" placeholder="Availability Status" [(ngModel)]="productForm.availabilityStatus" />
+  <input type="number" class="form-input" placeholder="Stock" [(ngModel)]="productForm.stock" />
+  <input type="text" class="form-input" placeholder="Image URLs (comma separated)" [(ngModel)]="imageInputString" />
+
+  <button class="form-button" (click)="addOrUpdateProduct()">
+    {{ productForm.id ? 'Update Product' : 'Add Product' }}
+  </button>
+</div>
+
+<div class="table-container">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>S No.</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Availability</th>
+        <th>Stock</th>
+        <th>Images</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.availabilityStatus }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+            <img *ngFor="let img of product.images" [src]="img" alt="Product Image" width="50" height="50" style="object-fit: cover; border-radius: 6px; border: 1px solid #ccc;" />
+        </div>
+        </td>
+        <td>
+          <button class="form-button m-2" (click)="editProduct(product)">Edit</button>
+          <button class="form-button m-2" (click)="deleteProduct(product.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
